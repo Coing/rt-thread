@@ -68,7 +68,11 @@
 #define RT_USING_DEVICE_IPC
 // <bool name="RT_USING_SERIAL" description="Using serial driver framework" default="true" />
 #define RT_USING_SERIAL
+// <bool name="RT_USING_I2C" description="Using I2C Device Driver Framework" default="true" />
+#define RT_USING_I2C
+#define RT_USING_I2C_BITOPS
 // </section>
+
 
 // <section name="RT_USING_CONSOLE" description="Using console" default="true" >
 #define RT_USING_CONSOLE
