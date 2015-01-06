@@ -35,10 +35,10 @@ void rt_init_thread_entry(void* parameter)
 	
 	rt_i2c_core_init();
 	rt_hw_i2c_init();
-	rt_hw_mpu6050_init("i2c0", MPU6050_DEFAULT_ADDRESS);
-	
-	mpu6050 = rt_device_find("mpu6050");
-	rt_device_open(mpu6050,RT_DEVICE_FLAG_RDWR);
+//	rt_hw_mpu6050_init("i2c0", MPU6050_DEFAULT_ADDRESS);
+//	
+//	mpu6050 = rt_device_find("mpu6050");
+//	rt_device_open(mpu6050,RT_DEVICE_FLAG_RDWR);
 	
 //	mpu6050_test();
 	/* initialization finsh shell Component */
