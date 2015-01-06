@@ -1,11 +1,15 @@
 #include <sensor.h>
 #include <stdio.h>
+
+#include <finsh.h>
+#include <shell.h>
+
 #include "MPU6050_sensor.h"
 
 
 		
-MPU6050_Accelerometer acc = MPU6050_Accelerometer("i2c0", MPU6050_ADDRESS_AD0_LOW);
-MPU6050_Gyroscope gryo = MPU6050_Gyroscope("i2c0", MPU6050_ADDRESS_AD0_LOW);
+		MPU6050_Accelerometer acc = MPU6050_Accelerometer("i2c0", MPU6050_ADDRESS_AD0_LOW);
+		MPU6050_Gyroscope gryo = MPU6050_Gyroscope("i2c0", MPU6050_ADDRESS_AD0_LOW);
 
 int sensor_test(int argc, char** argv)
 //int sensor_test()
@@ -15,6 +19,7 @@ int sensor_test(int argc, char** argv)
     sensors_event_t event;
     char line[64];
 
+		
 
 	
     sensor = rt_sensor_get_default(SENSOR_TYPE_ACCELEROMETER);
@@ -45,4 +50,4 @@ int sensor_test(int argc, char** argv)
     return 0;
 }
 
-//MSH_CMD_EXPORT(sensor_test, sensor test);
+MSH_CMD_EXPORT(sensor_test, sensor test);

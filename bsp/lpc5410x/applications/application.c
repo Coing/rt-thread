@@ -19,13 +19,35 @@
 #endif
 
 
+#include "components.h"
+
+#include "drv_i2c.h"
+#include "mpu6050.h"
+#include "drv_led.h"
+
 extern int demo_init(void);
 
 void rt_init_thread_entry(void* parameter)
 {
+	static rt_device_t mpu6050 = RT_NULL;
+	
+	rt_led_hw_init();
+	
+	rt_i2c_core_init();
+	rt_hw_i2c_init();
+	rt_hw_mpu6050_init("i2c0", MPU6050_DEFAULT_ADDRESS);
+	
+	mpu6050 = rt_device_find("mpu6050");
+	rt_device_open(mpu6050,RT_DEVICE_FLAG_RDWR);
+	
+//	mpu6050_test();
 	/* initialization finsh shell Component */
-    finsh_system_init();
-
+    //finsh_system_init();
+	#ifdef RT_USING_COMPONENTS_INIT
+	/* initialization RT-Thread Components */
+	rt_components_init();
+	#endif
+	
 		demo_init();
 	
 }

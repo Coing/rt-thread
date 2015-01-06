@@ -55,7 +55,8 @@ static void gpio_udelay(rt_uint32_t us)
     volatile rt_int32_t i;
     for (; us > 0; us--)
     {
-        i = 50;
+        //i = 50;
+				i = 7;
         while(i--);
     }
 }
@@ -78,26 +79,26 @@ static const struct rt_i2c_bit_ops bit_ops =
 void rt_hw_i2c_init(void)
 {
 	
-	int temp = 1;
+//	int temp = 1;
 	
 	/* 先用GPIO模拟来做吧 */
 	/*I2C0_SCL:P0_23     I2C0_SDA:P0_24  */
-//	LPC_SYSCON->AHBCLKCTRLSET[0] = (1UL << 14);       /* enable GPIO0 clock*/
-//	
+	LPC_SYSCON->AHBCLKCTRLSET[0] = (1UL << 14);       /* enable GPIO0 clock*/
+	
 //	LPC_SYSCON->PRESETCTRLSET[0] = (1UL << 14);				/* Resets a GPIO0 peripheral */
 //	LPC_SYSCON->PRESETCTRLCLR[0] = (1UL << 14);
 	
 	/* set P0.23, P0.24  output. */
 	LPC_GPIO->DIR[0] |= 0x03UL << 23;
 	
-	Chip_GPIO_SetPinState(LPC_GPIO,0,24,1);
+	Chip_GPIO_SetPinState(LPC_GPIO,0,24,0);
 	
 	rt_memset((void *)&i2c_device, 0, sizeof(struct rt_i2c_bus_device));
 	i2c_device.priv = (void *)&bit_ops;
 	rt_i2c_bit_add_bus(&i2c_device, "i2c0");
 
 	//Chip_GPIO_SetPinState(LPC_GPIO, 0, ledBits[LEDNumber], (bool) !On);
-	//Chip_GPIO_SetPinState(LPC_GPIO,0,23,1);
+	Chip_GPIO_SetPinState(LPC_GPIO,0,23,0);
 }
 
 

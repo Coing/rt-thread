@@ -137,7 +137,7 @@
 #define MPU6050_ZA_OFFSET_H         0x7D
 #define MPU6050_ZA_OFFSET_L         0x7E
 
-#define MPU6050_ID					0x70
+#define MPU6050_ID					0x68
 
 class MPU6050 :public SensorBase
 {

@@ -20,6 +20,7 @@
 #define RT_DEBUG
 // <bool name="RT_THREAD_DEBUG" description="Thread debug enable" default="false" />
 // #define RT_THREAD_DEBUG
+#define	RT_I2C_BIT_DEBUG
 // <bool name="RT_USING_OVERFLOW_CHECK" description="Thread stack over flow detect" default="true" />
 #define RT_USING_OVERFLOW_CHECK
 // </section>
@@ -83,7 +84,7 @@
 // </section>
 
 // <bool name="RT_USING_COMPONENTS_INIT" description="Using RT-Thread components initialization" default="true" />
-// #define RT_USING_COMPONENTS_INIT
+#define RT_USING_COMPONENTS_INIT
 // <section name="RT_USING_FINSH" description="Using finsh as shell, which is a C-Express shell" default="true" >
 #define RT_USING_FINSH
 // <bool name="FINSH_USING_SYMTAB" description="Using symbol table in finsh shell" default="true" />
@@ -97,6 +98,10 @@
 // <bool name="FINSH_USING_MSH_DEFAULT" description="Using module shell as a default shell" default="true" />
 #define FINSH_USING_MSH_DEFAULT		//??msh??shell
 // </section>
+
+
+#define RT_USING_LIBC
+#define RT_USING_CPLUSPLUS
 
 // <section name="LIBC" description="C Runtime library setting" default="always" >
 // <bool name="RT_USING_NEWLIB" description="Using newlib library, only available under GNU GCC" default="true" />
