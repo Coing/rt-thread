@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>CORE_M4</Define>
               <Undefine></Undefine>
-              <IncludePath>.;..\..\components\drivers\include;..\..\components\finsh;..\..\include;..\..\libcpu\arm\common;..\..\libcpu\arm\cortex-m4;Libraries\CMSIS\Include;Libraries\lpc_chip\chip_5410x;Libraries\lpc_chip\chip_5410x\config;Libraries\lpc_chip\chip_common;applications;drivers</IncludePath>
+              <IncludePath>.;..\..\components\drivers\include;..\..\components\drivers\sensors;..\..\components\finsh;..\..\include;..\..\libcpu\arm\common;..\..\libcpu\arm\cortex-m4;Libraries\CMSIS\Include;Libraries\lpc_chip\chip_5410x;Libraries\lpc_chip\chip_5410x\config;Libraries\lpc_chip\chip_common;applications;drivers</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -434,6 +434,11 @@
           <GroupName>Drivers</GroupName>
           <Files>
             <File>
+              <FileName>drv_i2c_soft.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>drivers\drv_i2c_soft.c</FilePath>
+            </File>
+            <File>
               <FileName>drv_led.c</FileName>
               <FileType>1</FileType>
               <FilePath>drivers\drv_led.c</FilePath>
@@ -444,14 +449,9 @@
               <FilePath>drivers\drv_uart.c</FilePath>
             </File>
             <File>
-              <FileName>drv_i2c_soft.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\drivers\drv_i2c_soft.c</FilePath>
-            </File>
-            <File>
               <FileName>mpu6050.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\drivers\mpu6050.c</FilePath>
+              <FilePath>drivers\mpu6050.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -473,11 +473,6 @@
         <Group>
           <GroupName>Libraries</GroupName>
           <Files>
-            <File>
-              <FileName>lib_power.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>Libraries\lpc_chip\chip_5410x\power_lib\keil\lib_power.lib</FilePath>
-            </File>
             <File>
               <FileName>fpu_init.c</FileName>
               <FileType>1</FileType>
@@ -706,6 +701,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Libraries</GroupName>
+          <Files>
+            <File>
+              <FileName>lib_power.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>Libraries\lpc_chip\chip_5410x\power_lib\keil\lib_power.lib</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Kernel</GroupName>
           <Files>
             <File>
@@ -861,6 +866,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Sensors</GroupName>
+          <Files>
+            <File>
+              <FileName>sensor.cpp</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\components\drivers\sensors\sensor.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>finsh</GroupName>
           <Files>
             <File>
@@ -877,6 +892,16 @@
               <FileName>cmd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\components\finsh\cmd.c</FilePath>
+            </File>
+            <File>
+              <FileName>msh_cmd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\components\finsh\msh_cmd.c</FilePath>
+            </File>
+            <File>
+              <FileName>msh.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\components\finsh\msh.c</FilePath>
             </File>
             <File>
               <FileName>finsh_compiler.c</FileName>

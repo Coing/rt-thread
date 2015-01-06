@@ -71,6 +71,8 @@
 // <bool name="RT_USING_I2C" description="Using I2C Device Driver Framework" default="true" />
 #define RT_USING_I2C
 #define RT_USING_I2C_BITOPS
+
+#define RT_USING_SENSOR
 // </section>
 
 
@@ -90,6 +92,10 @@
 #define FINSH_USING_DESCRIPTION
 // <integer name="FINSH_THREAD_STACK_SIZE" description="The stack size for finsh thread" default="4096" />
 #define FINSH_THREAD_STACK_SIZE	4096
+// <bool name="FINSH_USING_MSH" description="Using module shell feature" default="true" />
+#define FINSH_USING_MSH
+// <bool name="FINSH_USING_MSH_DEFAULT" description="Using module shell as a default shell" default="true" />
+#define FINSH_USING_MSH_DEFAULT		//??msh??shell
 // </section>
 
 // <section name="LIBC" description="C Runtime library setting" default="always" >

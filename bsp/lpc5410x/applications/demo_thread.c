@@ -44,7 +44,7 @@ int demo_init(void)
 	rt_device_open(mpu6050,RT_DEVICE_FLAG_RDWR);
 	
 
-	mpu6050_test();
+	//mpu6050_test();
 	
 //	ack = i2cRead(0x68, 0x75, 1, &sig);
 //	mpu6050_test();
