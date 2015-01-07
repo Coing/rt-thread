@@ -144,14 +144,13 @@ MPU6050_Accelerometer::MPU6050_Accelerometer(const char* iic_name, int addr)
     SensorConfig config = {SENSOR_MODE_NORMAL, SENSOR_DATARATE_400HZ, SENSOR_ACCEL_RANGE_2G};
 
 //    /* initialize MPU6050 */
-    write_reg(MPU6050_PWR_MGMT_1,   0x80);
-		//write_reg(MPU6050_PWR_MGMT_1,   0x00);
-    write_reg(MPU6050_PWR_MGMT_1,   0x01);
-    write_reg(MPU6050_PWR_MGMT_2,   0x00);
-    write_reg(MPU6050_GYRO_CONFIG,  0x18);
-    write_reg(MPU6050_ACCEL_CONFIG, 0x08);
-    //write_reg(MPU6050_ACCEL_CONFIG_2, 0x09);
-    //write_reg(MPU6050_INT_PIN_CFG,  0x30);
+    write_reg(MPU6050_PWR_MGMT_1,   0x80);			/* reset mpu6050 device 																		*/
+		write_reg(MPU6050_SMPLRT_DIV,   0x00);			/* Sample Rate = Gyroscope Output Rate / (1 + SMPLRT_DIV) 	*/
+    write_reg(MPU6050_PWR_MGMT_1,   0x03);			/* Wake up device , set device clock Z axis gyroscope				*/
+//    write_reg(MPU6050_PWR_MGMT_2,   0x00);
+		write_reg(MPU6050_CONFIG,   		0x03);			/* set DLPF_CFG 42Hz */
+    write_reg(MPU6050_GYRO_CONFIG,  0x18);			/* set gyro 2000deg/s */
+    write_reg(MPU6050_ACCEL_CONFIG, 0x08);			/* set acc +-4g/s */
 	
 		
 	x_offset = y_offset = z_offset = 0;
@@ -314,10 +313,11 @@ MPU6050_Gyroscope::MPU6050_Gyroscope(const char* iic_name, int addr)
 	rt_int32_t x, y, z;
 
     /* initialize MPU6050 */
-    write_reg(MPU6050_PWR_MGMT_1,   0x80);			/* reset mpu6050 device */
-		//write_reg(MPU6050_PWR_MGMT_1,   0x00);			
-    write_reg(MPU6050_PWR_MGMT_1,   0x01);			/* Wake up device , set device clock X axis gyroscope*/
-    write_reg(MPU6050_PWR_MGMT_2,   0x00);
+    write_reg(MPU6050_PWR_MGMT_1,   0x80);			/* reset mpu6050 device 																		*/
+		write_reg(MPU6050_SMPLRT_DIV,   0x00);			/* Sample Rate = Gyroscope Output Rate / (1 + SMPLRT_DIV) 	*/
+    write_reg(MPU6050_PWR_MGMT_1,   0x03);			/* Wake up device , set device clock Z axis gyroscope				*/
+//    write_reg(MPU6050_PWR_MGMT_2,   0x00);
+		write_reg(MPU6050_CONFIG,   		0x03);			/* set DLPF_CFG 42Hz */
     write_reg(MPU6050_GYRO_CONFIG,  0x18);			/* set gyro 2000deg/s */
     write_reg(MPU6050_ACCEL_CONFIG, 0x08);			/* set acc +-4g/s */
     //write_reg(MPU6050_ACCEL_CONFIG_2, 0x09);

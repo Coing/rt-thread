@@ -39,7 +39,7 @@ void rt_init_thread_entry(void* parameter)
 //	
 //	mpu6050 = rt_device_find("mpu6050");
 //	rt_device_open(mpu6050,RT_DEVICE_FLAG_RDWR);
-	
+//	
 //	mpu6050_test();
 	/* initialization finsh shell Component */
     //finsh_system_init();
