@@ -502,9 +502,9 @@
               <FilePath>drivers\mpu6050.c</FilePath>
             </File>
             <File>
-              <FileName>mpu6050_sensor.cpp</FileName>
+              <FileName>bmi055_sensor.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\drivers\mpu6050_sensor.cpp</FilePath>
+              <FilePath>.\drivers\bmi055_sensor.cpp</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>

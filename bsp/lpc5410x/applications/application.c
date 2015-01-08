@@ -29,12 +29,35 @@ extern int demo_init(void);
 
 void rt_init_thread_entry(void* parameter)
 {
-	static rt_device_t mpu6050 = RT_NULL;
-	
+	//static rt_device_t mpu6050 = RT_NULL;
+	    bool ack;
+    uint8_t sig;
+				uint8_t buf[6] = {0};
+    int16_t data[3] = {0};
+		
 	rt_led_hw_init();
 	
 	rt_i2c_core_init();
 	rt_hw_i2c_init();
+	rt_thread_delay(10);
+	ack = i2cWrite(0x69, 0x00, 0x80); 
+	rt_thread_delay(10);
+	ack = i2cRead(0x69, 0x00, 1, &sig);
+	rt_thread_delay(10);
+	ack = i2cRead(0x19, 0x00, 1, &sig);
+	
+//	while(1)
+//	{
+//		uint8_t buf[6] = {0};
+//    int16_t data[3] = {0};
+
+//    ack = i2cRead(0x19, 0x02, 2, buf);
+//    data[0] = (int16_t)((buf[0] << 8) | buf[1]);
+//		rt_thread_delay(10);
+////    data[1] = (int16_t)((buf[2] << 8) | buf[3]);
+////    data[2] = (int16_t)((buf[4] << 8) | buf[5]);
+//	}
+	
 //	rt_hw_mpu6050_init("i2c0", MPU6050_DEFAULT_ADDRESS);
 //	
 //	mpu6050 = rt_device_find("mpu6050");
@@ -48,7 +71,18 @@ void rt_init_thread_entry(void* parameter)
 	rt_components_init();
 	#endif
 	
-		demo_init();
+
+//	while(1)
+//	{
+//    ack = i2cRead(0x69, 0x02, 2, buf);
+//    data[0] = (int16_t)((buf[0] << 8) | buf[1]);
+//		rt_kprintf("acc_xyz:%d\n", data[0]);
+//		rt_thread_delay(100);
+////    data[1] = (int16_t)((buf[2] << 8) | buf[3]);
+////    data[2] = (int16_t)((buf[4] << 8) | buf[5]);
+//	}
+
+//		demo_init();
 	
 }
 
