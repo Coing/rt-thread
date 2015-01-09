@@ -25,10 +25,10 @@ int sensor_test(int argc, char** argv)
     if (sensor != RT_NULL)
     {
         int index;
-//        SensorConfig config = {SENSOR_MODE_NORMAL, SENSOR_DATARATE_400HZ, SENSOR_ACCEL_RANGE_2G};
+        SensorConfig config = {SENSOR_MODE_NORMAL, SENSOR_DATARATE_400HZ, SENSOR_ACCEL_RANGE_2G};
 
-//        rt_sensor_activate(sensor, 1);
-//        rt_sensor_configure(sensor, &config);
+        rt_sensor_activate(sensor, 1);
+        rt_sensor_configure(sensor, &config);
 
         index = 0;
         index = index;

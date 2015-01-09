@@ -124,10 +124,14 @@ BMI055_Accelerometer::BMI055_Accelerometer(const char* iic_name, int addr)
     SensorConfig config = {SENSOR_MODE_NORMAL, SENSOR_DATARATE_400HZ, SENSOR_ACCEL_RANGE_2G};
 	
 	/* initialize BMI055 暂时先驱动起来，在完善，暂时没有专门的acc宏*/
-	write_reg(0x14, 0xB6);			/* reset of the sensor  P57*/
-    write_reg(0x11, 0x00);			/* PMU_LPW   NORMAL mode P55	*/
-    write_reg(0x10, 0x0A);			/* 01010b  31.25 Hz P55	*/
-	write_reg(0x0F, 0x05);			/* 0101b  ±4g range PMU_RANGE set acc +-4g/s  P54	*/
+	// write_reg(0x14, 0xB6);			/* reset of the sensor  P57*/
+    // write_reg(0x11, 0x00);			/* PMU_LPW   NORMAL mode P55	*/
+    // write_reg(0x10, 0x0A);			/* 01010b  31.25 Hz P55	*/
+	// write_reg(0x0F, 0x05);			/* 0101b  ±4g range PMU_RANGE set acc +-4g/s  P54	*/
+	write_reg(BMI055_BGW_SOFTRESET, 0xB6);			/* reset of the sensor  P57*/
+  write_reg(BMI055_PMU_LPW, 0x00);			/* PMU_LPW   NORMAL mode P55	*/
+  write_reg(BMI055_PMU_BW, 0x0A);			/* 01010b  31.25 Hz P55	*/
+	write_reg(BMI055_PMU_RANGE, 0x05);			/* 0101b  ±4g range PMU_RANGE set acc +-4g/s  P54	*/
     // write_reg(BMI055_GYRO_CONFIG,    0x18);			/* set gyro 2000deg/s */
     // write_reg(BMI055_ACCEL_CONFIG,   0x08);			/* set acc +-4g/s */
 	
@@ -137,8 +141,8 @@ BMI055_Accelerometer::BMI055_Accelerometer(const char* iic_name, int addr)
 
 	/* read BMI055 id */
 	//read_reg(BMI055_WHOAMI, &id);
-	read_buffer(0x00, &id, 1);		/* BGW_CHIPID P47*/
-	if (id != 0xFA)
+	read_buffer(BMI055_ACC_BGW_CHIPID, &id, 1);		/* BGW_CHIPID P47*/
+	if (id != BMI055_ACC_BGW_CHIPID_VALUE)
 	{
 		printf("Warning: not found BMI055 id: %02x\n", id);
 	}
@@ -146,7 +150,7 @@ BMI055_Accelerometer::BMI055_Accelerometer(const char* iic_name, int addr)
 	/* get offset */
 	for (index = 0; index < 200; index ++)
 	{
-		read_buffer(0x02, value, 6);					/*ACCD_X_LSB P47 */
+		read_buffer(BMI055_ACCD_X_LSB, value, 6);					/*ACCD_X_LSB P47 */
 //		read_buffer(0x3B, value, 6);
 //		i2cRead(0x68, 0x3B, 6, value);
 		
@@ -198,10 +202,10 @@ BMI055_Accelerometer::configure(SensorConfig *config)
 	}
 
 	/* set range to sensor */
-	read_reg(0x0F, &value);		/* PMU_RANGE P54 */
+	read_reg(BMI055_PMU_RANGE, &value);		/* PMU_RANGE P54 */
 	value &= 0xF0;
 	value |= range;
-	write_reg(0x0F, value);
+	write_reg(BMI055_PMU_RANGE, value);
 
     return 0;
 }
@@ -214,18 +218,18 @@ BMI055_Accelerometer::activate(int enable)
     if (enable && this->enable == RT_FALSE)
     {
         /* enable accelerometer */
-		read_reg(0x11, &value); 	/* P55 */
+		read_reg(BMI055_PMU_LPW, &value); 	/* P55 */
 		value &= ~(0x07 << 7);
-		write_reg(0x11, value);
+		write_reg(BMI055_PMU_LPW, value);
     }
 
 	if (!enable && this->enable == RT_TRUE)
     {
         /* disable accelerometer */
-		read_reg(0x11, &value); 
+		read_reg(BMI055_PMU_LPW, &value); 
 		value &= ~(0x07 << 7);
 		value |= (0x01 << 7);
-		write_reg(0x11, value);
+		write_reg(BMI055_PMU_LPW, value);
     }
 
 	if (enable) this->enable = RT_TRUE;
@@ -293,7 +297,7 @@ BMI055_Gyroscope::BMI055_Gyroscope(const char* iic_name, int addr)
 	rt_int32_t x, y, z;
 
     /* initialize BMI055 */
-    write_reg(BMI055_MODE_LPM1_ADDR, 0x80);			/* SUSPEND mode 					*/
+    write_reg(BMI055_MODE_LPM1_ADDR, 0x00);			/* normal mode 					*/
 	write_reg(BMI055_MODE_LPM2_ADDR,     0x80);			/* fast powerup 					*/
     write_reg(BMI055_BW_ADDR,        0x03);			/* ODR:400Hz Filter Bandwidth:47Hz	*/
 	write_reg(BMI055_RANGE_ADDR,     0x00);			/* 2000dps 							*/
