@@ -1040,6 +1040,7 @@ typedef struct SensorConfig
 
     union range
     {
+				int r;
         enum SensorAccelRange accel_range;
         enum SensorGyroRange  gyro_range;
     } range;
